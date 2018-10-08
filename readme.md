@@ -128,8 +128,8 @@
   ]
 ```
 
-- [ ] [ekill.js](./ekill.md#js)
-- [ ] [ekill.css](./ekill.md#css)
+- [x] [ekill.js](./ekill.md#js)
+- [x] [ekill.css](./ekill.md#css)
 
 - [官方](https://developer.chrome.com/extensions/content_scripts) || [非官方:中文](https://crxdoc-zh.appspot.com/extensions/content_scripts)
 
@@ -160,24 +160,24 @@
 #!/usr/bin/env bash
 
 mkdir tmp
-git archive HEAD --format=zip > tmp/ekill.zip
+git archive HEAD --format=zip > tmp/ekill.zip # 运用git,从git命名树创建文件存档, 打包git存储库
 
-pushd tmp
+pushd tmp # pushd：切换到作为参数的目录，并把原目录和当前目录压入到一个虚拟的堆栈中
 
-zip -d ekill.zip .gitignore
+zip -d ekill.zip .gitignore # 删除 压缩多余文件
 zip -d ekill.zip README.md
 zip -d ekill.zip package.sh
 zip -d ekill.zip example.gif
 
-popd
+popd # popd : 弹出pushd的堆
 
-if [ ! -f ekill.zip ];
+if [ ! -f ekill.zip ]; # 看看有没有旧的, 删除
 then
   rm ekill.zip
 fi
 
-mv tmp/ekill.zip .
-rm -rf tmp
+mv tmp/ekill.zip . # 移到 根目录
+rm -rf tmp # 删掉缓存目录
 
-zipinfo ekill.zip
+zipinfo ekill.zip # zip 信息
 ```
